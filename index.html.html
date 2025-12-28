@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARJ College</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  width:100%;
+  padding:10px 15px;
+  background-color:	#6B4F3F;
+}
+
+.logo img{ width:65px; }
+
+.text-box{ margin-left:12px; flex:1; }
+
+.college-name{
+  font-size:clamp(18px, 4vw, 36px);
+  font-weight:900;
+  color:#dadbea;
+}
+
+.sub-text{
+  font-size:clamp(12px, 2.5vw, 16px);
+  color:#e6dddd;
+}
+
+/* ================= NEWS + NAV ================= */
+.news-nav{
+  display:flex;
+  align-items:center;
+  background:#caac64;
+  padding:0 10px;
+  
+}
+
+.news-nav a{
+  color: #1e4fd8;
+}
+
+.news{ flex:1; overflow:hidden; white-space:nowrap; }
+
+.news span{
+  display:inline-block;
+  padding:10px 0;
+  color:#3331c4;
+  font-weight:600;
+  animation: newsMove 18s linear infinite;
+}
+
+@keyframes newsMove{
+  0%{ transform:translateX(-100%); }
+  100%{ transform:translateX(100%); }
+}
+
+.navbar{ display:flex; }
+
+.navbar a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:15px;
+  font-size:14px;
+}
+
+.menu-btn{
+  display:none;
+  font-size:22px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ================= HERO ================= */
+.hero{
+  height:75vh;
+  background:url("/img/arjmain.avif") center/cover no-repeat;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+}
+
+.hero-content{
+  position:relative;
+  color:#fff;
+  text-align:center;
+}
+
+.hero-content h1{
+  font-size:clamp(22px,5vw,48px);
+}
+
+.hero-content h2{
+  font-size:clamp(16px,3vw,28px);
+  margin:10px 0 20px;
+}
+
+.hero-content button{
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ffca28;
+  font-weight:700;
+}
+
+/* ================= COMMON TITLE ================= */
+.section-title{
+  text-align:center;
+  font-size:clamp(22px,4vw,36px);
+  font-weight:800;
+  margin:50px 0 25px;
+  color:#656dce;
+}
+
+/* ================= ABOUT ================= */
+.about{
+  display:flex;
+  gap:30px;
+  padding:20px 40px;
+  align-items:center;
+}
+
+.about-text{ flex:1; }
+
+.about-text h3{ color:#9d1717; margin-bottom:10px; }
+
+.about-text p{
+  font-size:15px;
+  line-height:1.6;
+}
+
+.about-img{ flex:1; text-align:center; }
+
+.about-img img{
+  width:100%;
+  max-width:420px;
+  border-radius:12px;
+}
+
+/* ================= ABOUT BORDER BOX ================= */
+.about-box{
+  margin:40px;
+  border:2px solid #1a237e;
+  border-radius:12px;
+  padding:20px;
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.about-box img{
+  width:260px;
+  border-radius:10px;
+}
+
+.about-box-text h4{
+  color:#9d1717;
+  margin-bottom:10px;
+}
+
+.about-box-text p{
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* ================= CAMPUS ================= */
+.campus{ padding:20px 40px 60px; }
+
+.campus-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.campus-box{
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 14px rgba(0,0,0,0.2);
+}
+
+.campus-box img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.campus-content{ padding:15px; }
+
+/* ================= FACULTY ================= */
+.faculty{
+  padding:20px 40px 60px;
+}
+
+.faculty-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;
+}
+
+.faculty-box{
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(0,0,0,0.2);
+  background:#fff;
+}
+
+.faculty-box img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.faculty-content{
+  padding:15px;
+}
+
+.faculty-content h4{
+  color:#1a237e;
+  margin-bottom:5px;
+}
+
+.faculty-content p{
+  font-size:14px;
+  line-height:1.5;
+}
+.achievement-section{
+  width:100%;
+  padding:60px 20px;
+  background:#f5f7fb;
+  text-align:center;
+}
+
+/* ===== MIDDLE TEXT ===== */
+.achievement-title{
+  font-size:36px;
+  font-weight:700;
+  color:#222;
+  margin-bottom:15px;
+}
+
+.achievement-desc{
+  max-width:800px;
+  margin:0 auto 50px;
+  font-size:16px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* ===== BOX CONTAINER ===== */
+.achievement-boxes{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+/* ===== SINGLE BOX ===== */
+.ach-box{
+  background:#fff;
+  border-radius:15px;
+  padding:30px 20px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.ach-box:hover{
+  transform:translateY(-8px);
+}
+
+/* ===== IMAGE ===== */
+.ach-img{
+  width:100px;
+  height:100px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  overflow:hidden;
+  border:4px solid #2b6cff;
+}
+
+.ach-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ===== TEXT ===== */
+.ach-name{
+  font-size:18px;
+  font-weight:700;
+  color:#222;
+  margin-bottom:8px;
+}
+
+.ach-info{
+  font-size:14px;
+  color:#555;
+  line-height:1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:992px){
+  .achievement-boxes{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:576px){
+  .achievement-title{
+    font-size:26px;
+  }
+  .achievement-boxes{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1100px){
+  .faculty-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
+@media(max-width:992px){
+  .campus-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:768px){
+  .menu-btn{ display:block; }
+
+  .navbar{
+    position:absolute;
+    top:115px;
+    right:10px;
+    background:#1a237e;
+    flex-direction:column;
+    display:none;
+  }
+
+  .navbar.show{ display:flex; }
+
+  .about,
+  .about-box{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .about-box img{ width:100%; }
+
+  .campus-grid,
+  .faculty-grid{
+    grid-template-columns:1fr;
+  }
+}
+.contact-section{
+  width:100%;
+  padding:60px 20px;
+  background:#ffffff;
+}
+
+.contact-title{
+  text-align:center;
+  font-size:36px;
+  font-weight:700;
+  color:#222;
+  margin-bottom:10px;
+}
+
+.contact-desc{
+  text-align:center;
+  max-width:750px;
+  margin:0 auto 50px;
+  font-size:16px;
+  color:#555;
+}
+
+/* ===== CONTACT CONTENT ===== */
+.contact-wrapper{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+/* ===== CONTACT INFO ===== */
+.contact-info{
+  background:#f5f7fb;
+  padding:35px;
+  border-radius:15px;
+}
+
+.contact-info h3{
+  font-size:22px;
+  margin-bottom:20px;
+  color:#222;
+}
+
+.contact-info p{
+  font-size:15px;
+  color:#555;
+  margin-bottom:15px;
+  line-height:1.6;
+}
+
+.contact-info span{
+  font-weight:700;
+  color:#2b6cff;
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-form{
+  background:#f5f7fb;
+  padding:35px;
+  border-radius:15px;
+}
+
+.contact-form h3{
+  font-size:22px;
+  margin-bottom:20px;
+  color:#222;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:12px 14px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.contact-form textarea{
+  resize:none;
+  height:120px;
+}
+
+.contact-form button{
+  background:#2b6cff;
+  color:#fff;
+  border:none;
+  padding:12px 30px;
+  font-size:15px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-form button:hover{
+  background:#1e4fd8;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background:#1a1a1a;
+  color:#ccc;
+  padding:50px 20px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+
+/* FOOTER BOX */
+.footer-box h4{
+  color:#fff;
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-box p,
+.footer-box a{
+  font-size:14px;
+  color:#ccc;
+  text-decoration:none;
+  line-height:1.7;
+  display:block;
+}
+
+.footer-box a:hover{
+  color:#2b6cff;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  padding-top:15px;
+  border-top:1px solid #333;
+  font-size:14px;
+  color:#aaa;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:992px){
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+  .footer-container{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:576px){
+  .contact-title{
+    font-size:26px;
+  }
+  .footer-container{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo"><img src="/img/arjmain.avif"></div>
+  <div class="text-box">
+    <div class="college-name">A R JAHAGIRDAR COLLEGE, ILKAL</div>
+    <div class="sub-text">Since 2008 | Bagalkot University | A+ Grade</div>
+  </div>
+</header>
+
+<div class="news-nav">
+  <div class="news"><span>🔔 Admissions Open | New Courses Available 🔔</span></div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="navbar" id="menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Campus</a>
+    <a href="#">Faculty</a>
+    <a href="#">Contact</a>
+    <a href="#">Contact</a>
+    <a href="#">register/login</a>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>A R JAHAGIRDAR COLLEGE</h1>
+    <h2>Welcome</h2>
+    <button>Login</button>
+  </div>
+</section>
+
+<div class="section-title">About</div>
+
+<section class="about-box">
+  <img src="img/arjmain.avif">
+  <div class="about-box-text">
+    <h4>College Information</h4>
+    <p>
+      Affiliated to Bagalkot University.  
+      Offers UG and PG programs.  
+      Focus on academic excellence and discipline.  
+      Modern classrooms and laboratories.  
+      Student-centered learning environment.Svm Jahagirdar College of BCA was founded in 2013. It is a private institute and is located in Bagalkot, Karnataka. Svm Jahagirdar College of BCA courses are offered to students at the UG and PG levels. The institute offers courses in Full Time mode. Svm Jahagirdar College of BCA offers a total of 2 courses in streams such as Engineering and IT & Software. Some of the popular courses offered at the institute are PG Diploma and UG Diploma and the total seat intake for the available courses is 350. These courses are offered to students across several specialisation such as Computer Science Engineering. Apart from this, the Svm Jahagirdar College of BCA campus has a state-of-the-art infrastructure with all the advanced facilities.
+    </p>
+  </div>
+</section>
+
+<div class="section-title">Campus</div>
+
+<section class="campus">
+  <div class="campus-grid">
+    <div class="campus-box"><img src="img/arjmain.avif"><div class="campus-content"><b>Main Building</b><p>   Affiliated to Bagalkot University.  
+      Offers UG and PG programs.  
+      Focus on academic excellence and discipline.  
+      Modern classrooms and laboratories.  </p></div></div>
+    <div class="campus-box"><img src="img/labb.jpg"><div class="campus-content"><b>Library </b><p>A library is a curated collection of books, journals, digital media, and resources, evolving from simple book storage to vital centers for digital literacy, education, and cultural enrichment for all age</p></div></div>
+    <div class="campus-box"><img src="img/cs.jpg"><div class="campus-content"><b>Computer lab</b> <p>libraries, equipped with multiple computers for users to learn digital skills, conduct research, and complete technology-based projects, emphasizing rules like silence and proper equipment care for an effective, shared learning environment</p></div></div>
+    <div class="campus-box"><img src="img/ground.avif"><div class="campus-content"><b>Sports Ground </b> <p>A sports ground is a place, such as a field or stadium, specifically designed and used for playing sports and other athletic events. These venues can range from simple open areas for amateur play to large, sophisticated stadiums with seating</p></div></div>
+  </div>
+</section>
+<div class="section-title">Faculty</div>
+
+<section class="faculty">
+  <div class="faculty-grid">
+
+    <div class="faculty-box">
+      <img src="/img/faculty1.jpg">
+      <div class="faculty-content">
+        <h4>Dr. A. Patil</h4>
+        <p>Principal<br>20+ years experience</p>
+      </div>
+    </div>
+
+    <div class="faculty-box">
+      <img src="/img/faculty2.jpg">
+      <div class="faculty-content">
+        <h4>Prof. S. Kulkarni</h4>
+        <p>Computer Science<br>M.Tech, PhD</p>
+      </div>
+    </div>
+
+    <div class="faculty-box">
+      <img src="/img/faculty3.jpg">
+      <div class="faculty-content">
+        <h4>Prof. R. Desai</h4>
+        <p>Commerce Department<br>15 years experience</p>
+      </div>
+    </div>
+
+    <div class="faculty-box">
+      <img src="/img/faculty4.jpg">
+      <div class="faculty-content">
+        <h4>Prof. M. Joshi</h4>
+        <p>Science Department<br>Research Scholar</p>
+      </div>
+    </div>
+
+    <div class="faculty-box">
+      <img src="/img/faculty5.jpg">
+      <div class="faculty-content">
+        <h4>Prof. N. Patil</h4>
+        <p>Arts Department<br>Student Mentor</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+      <div class="section-title">Events</div>
+<section class="campus">
+  <div class="campus-grid">
+    <div class="campus-box"><img src="/img/campus1.jpg"><div class="campus-content">Main Building</div></div>
+    <div class="campus-box"><img src="/img/campus2.jpg"><div class="campus-content">Library</div></div>
+    <div class="campus-box"><img src="/img/campus3.jpg"><div class="campus-content">Laboratories</div></div>
+    <div class="campus-box"><img src="/img/campus4.jpg"><div class="campus-content">Sports Ground</div></div>
+  </div>
+</section>
+<section class="achievement-section">
+
+  <!-- MIDDLE TEXT -->
+  <h2 class="achievement-title">Our Achievements</h2>
+  <p class="achievement-desc">
+    A R Jahagirdar College proudly celebrates excellence in academics,
+    sports, research and leadership. Our achievements reflect dedication,
+    discipline and success across all fields.
+  </p>
+
+  <!-- 4 BOXES -->
+  <div class="achievement-boxes">
+
+    <!-- BOX 1 -->
+    <div class="ach-box">
+      <div class="ach-img">
+        <img src="https://via.placeholder.com/150" alt="Person">
+      </div>
+      <div class="ach-name">Academic Excellence</div>
+      <div class="ach-info">
+        1000+ students secured university ranks and distinctions with
+        outstanding academic performance.
+      </div>
+    </div>
+
+    <!-- BOX 2 -->
+    <div class="ach-box">
+      <div class="ach-img">
+        <img src="https://via.placeholder.com/150" alt="Person">
+      </div>
+      <div class="ach-name">Sports Champions</div>
+      <div class="ach-info">
+        Our students won state and national level medals in athletics,
+        cricket, kabaddi and more.
+      </div>
+    </div>
+
+    <!-- BOX 3 -->
+    <div class="ach-box">
+      <div class="ach-img">
+        <img src="https://via.placeholder.com/150" alt="Person">
+      </div>
+      <div class="ach-name">Research & Innovation</div>
+      <div class="ach-info">
+        Faculty and students published research papers and received
+        innovation awards.
+      </div>
+    </div>
+
+    <!-- BOX 4 -->
+    <div class="ach-box">
+      <div class="ach-img">
+        <img src="https://via.placeholder.com/150" alt="Person">
+      </div>
+      <div class="ach-name">Placements & Careers</div>
+      <div class="ach-info">
+        Excellent placement record with students selected in top companies
+        and government services.
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="contact-section">
+  <h2 class="contact-title">Contact Us</h2>
+  <p class="contact-desc">
+    Get in touch with A R Jahagirdar College for admissions, academics,
+    examinations and general enquiries.
+  </p>
+
+  <div class="contact-wrapper">
+
+    <!-- CONTACT INFO -->
+    <div class="contact-info">
+      <h3>College Information</h3>
+      <p><span>Address:</span> A R Jahagirdar College, Ilkal, Bagalkote District, Karnataka</p>
+      <p><span>Phone:</span> +91 98765 43210</p>
+      <p><span>Email:</span> info@arjcollege.edu.in</p>
+      <p><span>Office Hours:</span> Monday – Saturday (9:30 AM – 4:30 PM)</p>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="contact-form">
+      <h3>Send Message</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject">
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+<!-- ===== CONTACT US END ===== -->
+
+
+<!-- ===== FOOTER START ===== -->
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- FOOTER BOX 1 -->
+    <div class="footer-box">
+      <h4>A R Jahagirdar College</h4>
+      <p>
+        NAAC Accredited College affiliated to Rani Channamma University,
+        Bagalkote. Committed to quality education and student success.
+      </p>
+    </div>
+
+    <!-- FOOTER BOX 2 -->
+    <div class="footer-box">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Courses</a>
+      <a href="#">Admissions</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- FOOTER BOX 3 -->
+    <div class="footer-box">
+      <h4>Academics</h4>
+      <a href="#">Departments</a>
+      <a href="#">Faculty</a>
+      <a href="#">Library</a>
+      <a href="#">Examinations</a>
+    </div>
+
+    <!-- FOOTER BOX 4 -->
+    <div class="footer-box">
+      <h4>Contact</h4>
+      <p>Ilkal, Bagalkote, Karnataka</p>
+      <p>Email: info@arjcollege.edu.in</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 A R Jahagirdar College, Ilkal. All Rights Reserved.
+  </div>
+
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
